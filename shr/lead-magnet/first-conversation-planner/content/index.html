@@ -60,6 +60,11 @@ h1 { font-size:30px; line-height:1.25; margin:26px 0 6px; }
 .rcard .wrap { position:relative; }
 .rstep { display:inline-block; font-size:12px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:var(--dark); background:var(--tint); border-radius:99px; padding:3px 12px; margin:0 0 10px; }
 .rcard h2 { font-size:23px; line-height:1.3; margin:0 0 8px; padding-left:14px; border-left:5px solid var(--accent); }
+.rcheck { max-width:760px; box-sizing:border-box; background:var(--tint); border:1px solid var(--accent); border-left:6px solid var(--accent); border-radius:8px; padding:14px 18px; margin:0 0 16px; }
+.rcheck .lab { display:inline-block; font-size:12px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:var(--on-accent); background:var(--dark); border-radius:99px; padding:3px 12px; margin:0 0 8px; }
+.rcheck h3 { margin:0 0 6px; font-size:17px; color:var(--dark); }
+.rcheck p { margin:0 0 8px; font-size:15px; line-height:1.55; }
+.rcheck p:last-child { margin-bottom:0; }
 .rwhat { margin:0 0 14px; max-width:760px; }
 .rfacts { width:100%; max-width:760px; border-collapse:collapse; border:1px solid var(--line); font-size:14px; margin:0 0 14px; background:#fff; }
 .rfacts th { text-align:left; font-weight:600; color:var(--dark); background:var(--tint); padding:8px 12px; width:170px; vertical-align:top; }
@@ -342,7 +347,14 @@ footer.foot img { height:22px; width:auto; }
   <div class="wrap">
     <p class="rstep">Step 6 of 6, part 1 of 6</p>
     <h2>Email 1: Your HR Planner is here</h2>
-    <p class="rwhat">Sent straight away. It gives the planner, the real example and the notes page, and says how to use each one. One thing I&#x27;d appreciate your eye on, please: the emails show the sender as &quot;Simply HR, Karen&quot;. I&#x27;ve shortened the name so all of it shows in an inbox and your lead can see at a glance who it&#x27;s from. Would you be happy with that? You can tell me in the box below.</p>
+    <p class="rwhat">Sent straight away. It gives the planner, the real example and the notes page, and says how to use each one.</p>
+    <div class="rcheck" role="note">
+      <p class="lab">One thing to check, please</p>
+      <h3>The sender name on every email: &quot;Simply HR, Karen&quot;</h3>
+      <p>Before you read the emails, there is one thing I&#x27;d like your approval on. Every email in this sequence shows the sender as &quot;Simply HR, Karen&quot;, in place of your full business name.</p>
+      <p>Here&#x27;s why. An inbox shows only the first part of a sender&#x27;s name, especially on a phone, so a long name is cut off part way. The shorter name shows in full, so your lead can see at a glance that the email is from your business and from you personally, which helps them recognise it and open it. Your full name, Simply Human Resources, still appears inside every email.</p>
+      <p>Would you be happy with that? If so, there is nothing more to do: approving this piece approves the sender name too. If you&#x27;d prefer a different name, please tell me in the box below.</p>
+    </div>
     <table class="rfacts"><tr><th>When it&#x27;s sent</th><td>Straight away, when they sign up</td></tr><tr><th>Who it&#x27;s from</th><td>Simply HR, Karen</td></tr><tr><th>Subject line</th><td>Your HR Planner is here</td></tr><tr><th>Preview line</th><td>Plus a real example, and a page for your notes afterwards.</td></tr></table>
     <div class="rframe" data-w="660" data-h="300" data-view="desktop">
       <div class="rbarx"><span class="tag">Preview only</span><div class="open"></div></div>
@@ -363,6 +375,12 @@ footer.foot img { height:22px; width:auto; }
     <p class="rstep">Step 6 of 6, part 2 of 6</p>
     <h2>Email 2: Your HR Planner: after the talk, what next?</h2>
     <p class="rwhat">What to do after the conversation: be specific, check in, and use a four-week Job Action Plan if more structure would help.</p>
+    <div class="rcheck" role="note">
+      <p class="lab">One thing to check, please</p>
+      <h3>The Job Action Plan guidance in this email</h3>
+      <p>This email explains how a four-week Job Action Plan works: weekly check-ins, writing it together in the meeting, and three questions to ask at each check-in.</p>
+      <p>It is your method and it goes out in your name, so would you please check it reads the way you would guide a manager? If you&#x27;d like anything said differently, please tell me in the box below.</p>
+    </div>
     <table class="rfacts"><tr><th>When it&#x27;s sent</th><td>3 days after email 1</td></tr><tr><th>Who it&#x27;s from</th><td>Simply HR, Karen</td></tr><tr><th>Subject line</th><td>Your HR Planner: after the talk, what next?</td></tr><tr><th>Preview line</th><td>The part that is easy to miss, and a simple way to keep things on track.</td></tr></table>
     <div class="rframe" data-w="660" data-h="300" data-view="desktop">
       <div class="rbarx"><span class="tag">Preview only</span><div class="open"></div></div>
@@ -382,7 +400,13 @@ footer.foot img { height:22px; width:auto; }
   <div class="wrap">
     <p class="rstep">Step 6 of 6, part 3 of 6</p>
     <h2>Email 3: Your HR Planner: if it doesn&#x27;t go to plan</h2>
-    <p class="rwhat">What to do when the conversation doesn&#x27;t go to plan (they disagree, get upset, raise something personal or say they feel unsafe), with a soft offer of support by reply. The wording here about someone feeling unsafe, health and safety, and pausing a meeting is sensitive, and you&#x27;re the expert. Would you please advise, in the box below, if you&#x27;d like any of it said differently?</p>
+    <p class="rwhat">What to do when the conversation doesn&#x27;t go to plan (they disagree, get upset, raise something personal or say they feel unsafe), with a soft offer of support by reply.</p>
+    <div class="rcheck" role="note">
+      <p class="lab">One thing to check, please</p>
+      <h3>The sensitive wording in this email</h3>
+      <p>This email covers what to do when the conversation doesn&#x27;t go to plan, including when someone says they feel unsafe, health and safety, and when to pause a meeting.</p>
+      <p>That is sensitive wording and you are the expert, so would you please advise if you&#x27;d like any of it said differently? The box below is the place for it.</p>
+    </div>
     <table class="rfacts"><tr><th>When it&#x27;s sent</th><td>4 days after email 2</td></tr><tr><th>Who it&#x27;s from</th><td>Simply HR, Karen</td></tr><tr><th>Subject line</th><td>Your HR Planner: if it doesn&#x27;t go to plan</td></tr><tr><th>Preview line</th><td>What to do if they disagree, get upset or raise something personal.</td></tr></table>
     <div class="rframe" data-w="660" data-h="300" data-view="desktop">
       <div class="rbarx"><span class="tag">Preview only</span><div class="open"></div></div>
