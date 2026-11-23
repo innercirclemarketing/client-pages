@@ -1,0 +1,456 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="color-scheme" content="light only">
+<title>Simply Human Resources: Domain Set-Up</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+<style>
+  :root{color-scheme:light only;
+    --accent:#00AEC7; --accent-ink:#333333; --text:#333333; --muted:#444444;
+    --bg:#F7F6F5; --card:#FFFFFF; --border:#E1E4E8; --ok:#1F7A4D; --val:#E0F5F8;
+    --mmb-blue:#A9CDD8; --mmb-ink:#070E16; --radius:12px;
+    --font-h:'Poppins',sans-serif; --font-b:'Poppins',sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font-b);font-size:17px;line-height:1.55}
+  .wrap{max-width:860px;margin:0 auto;padding:0 16px}
+  header{padding:28px 0 12px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  header img{max-height:64px;max-width:220px}
+  .tag{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600}
+  .draft{background:#C02B0A;color:#fff;font-size:12px;font-weight:600;padding:3px 10px;border-radius:999px;letter-spacing:0}
+  .rule{height:4px;background:var(--accent);border-radius:2px;margin:4px 0 24px}
+  h1{font-family:var(--font-h);font-weight:700;font-size:clamp(28px,4.5vw,40px);line-height:1.15;margin:0 0 10px}
+  h2{font-family:var(--font-h);font-weight:700;font-size:22px;margin:0 0 6px}
+  p{margin:0 0 12px}
+  .lead{font-size:18px;color:var(--muted)}
+  .before{background:var(--card);border:1px solid var(--border);border-left:6px solid var(--accent);border-radius:var(--radius);padding:16px 20px;margin:18px 0 28px}
+  .before ul{margin:6px 0 0;padding-left:20px}
+  .progress{position:sticky;top:0;background:var(--bg);padding:10px 0 8px;z-index:5;border-bottom:1px solid var(--border)}
+  .bar{height:10px;background:var(--border);border-radius:5px;overflow:hidden}
+  .bar i{display:block;height:100%;width:0;background:var(--accent);transition:width .3s}
+  .progress small{display:block;margin-top:6px;color:var(--muted)}
+  .step{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px 22px;margin:18px 0;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+  .step.done{opacity:.72;border-color:var(--ok)}
+  .step-head{display:flex;gap:14px;align-items:flex-start}
+  .num{flex:0 0 40px;width:40px;height:40px;border-radius:50%;background:var(--accent);color:var(--accent-ink);font-family:var(--font-h);font-weight:700;font-size:18px;display:flex;align-items:center;justify-content:center}
+  .step.done .num{background:var(--ok);color:#fff}
+  .step ol{padding-left:22px;margin:8px 0 12px}
+  .step ul{padding-left:22px;margin:6px 0 12px}
+  .step li{margin:4px 0}
+  .step .sub{margin:14px 0 4px}
+  .val{display:inline-block;background:var(--val);border-radius:6px;padding:1px 8px;font-weight:600;margin:2px 0;overflow-wrap:anywhere}
+  .btn{display:inline-block;padding:11px 18px;border-radius:999px;text-decoration:none;font-weight:600;font-size:15px;margin:4px 8px 4px 0}
+  .btn-go{background:var(--accent);color:var(--accent-ink)}
+  .btn-ask{background:var(--mmb-blue);color:var(--mmb-ink)}
+  .key{display:inline-block;padding:1px 8px;border-radius:999px;font-size:.92em}
+  .key-ask{background:var(--mmb-blue);color:var(--mmb-ink)}
+  .see{background:var(--bg);border-radius:8px;padding:10px 14px;margin:10px 0;font-size:15px}
+  .see b{color:var(--ok)}
+  .tick{display:flex;align-items:center;gap:10px;margin-top:12px;font-weight:600;cursor:pointer}
+  .tick input{width:22px;height:22px;accent-color:var(--ok)}
+  .snag{font-size:15px;color:var(--muted);margin-top:8px}
+  .pause{background:var(--card);border:2px dashed var(--accent);border-radius:var(--radius);padding:18px 22px;margin:26px 0;text-align:center}
+  .pause p{margin:6px 0 0}
+  .finish{border:2px solid var(--accent);text-align:center}
+  .finish .btn{font-size:17px}
+  footer{margin-top:40px;background:var(--mmb-blue);color:var(--mmb-ink);font-family:'Space Grotesk','Plus Jakarta Sans',sans-serif}
+  footer .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:26px 16px;flex-wrap:wrap}
+  .who{display:flex;align-items:center;gap:18px}
+  .who img.face{width:96px;height:96px;border-radius:50%;object-fit:cover;border:3px solid #fff}
+  .who .name{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:22px;margin:0 0 2px}
+  .who a{color:var(--mmb-ink);text-decoration:none;display:block;font-size:16px;line-height:1.5}
+  .who .co{font-size:13px;letter-spacing:.1em;text-transform:uppercase;margin-top:4px;opacity:.8}
+  .mmb{width:96px;height:96px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;padding:10px}
+  .mmb img{max-width:100%;max-height:100%}
+  .meta-note{text-align:center;font-size:13px;color:var(--muted);padding:14px 16px 24px}
+  @media (max-width:600px){ footer .wrap{justify-content:center;text-align:center} .who{flex-direction:column} .step-head{flex-direction:column} }
+
+  .look{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:12px 14px;margin:12px 0}
+  .look-h{font-weight:600;font-size:15px;margin:0 0 8px}
+  .look-row{display:grid;grid-template-columns:210px 1fr;gap:14px;align-items:center;padding:10px 0;border-top:1px solid var(--border);font-size:15px}
+  .look-pic{display:flex;flex-direction:column;align-items:flex-start;gap:4px}
+  .eg{display:inline-flex;align-items:center;gap:8px;flex-wrap:wrap;cursor:not-allowed;user-select:none;background:#fff;border:1px solid #D5D9DD;border-radius:8px;padding:8px 10px;font-family:system-ui,-apple-system,'Segoe UI',sans-serif;font-size:14px;color:#1D1F20;line-height:1.2}
+  .eg-tag{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+  .eg-note{font-size:14px;color:var(--muted);margin:8px 0 0}
+  .mk-btn{background:#0051C3;color:#fff;border-radius:6px;padding:7px 14px;font-weight:600}
+  .mk-btn.quiet{background:#fff;color:#0051C3;border:1px solid #0051C3}
+  .mk-lab{font-size:12px;color:#5E6368;width:100%}
+  .mk-field{border:1px solid #9AA0A6;border-radius:5px;padding:6px 10px;min-width:150px;background:#fff;overflow-wrap:anywhere}
+  .mk-sw{display:inline-flex;align-items:center;gap:7px}
+  .mk-cloud{width:26px;height:17px;fill:#9AA0A6}
+  .mk-sw.on .mk-cloud{fill:#F38020}
+  .mk-tog{width:34px;height:18px;border-radius:9px;background:#9AA0A6;position:relative;display:inline-block}
+  .mk-tog i{position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:50%;background:#fff}
+  .mk-sw.on .mk-tog{background:#F38020}
+  .mk-sw.on .mk-tog i{left:18px}
+  .mk-status{border-radius:999px;padding:4px 12px;font-weight:600;background:#FFF3D6;color:#7A5200}
+  .mk-status.ok{background:#DDF3E4;color:#1F7A4D}
+  .chip{display:inline-block;border-radius:999px;padding:2px 10px;font-size:13px;font-weight:600;margin-right:4px;white-space:nowrap}
+  .chip-press,.chip-type,.chip-choose{background:#DDF3E4;color:#1F7A4D}
+  .chip-leave,.chip-none{background:#ECEEF0;color:#4D535A}
+  .why li{margin:6px 0}
+  .owner p{margin:8px 0 0}
+  .owner .btn{margin-top:12px}
+  .band{border-radius:var(--radius);padding:16px 22px;margin:22px 0;font-family:var(--font-h);font-weight:700;font-size:20px;line-height:1.3;text-align:center}
+  .band-first{background:var(--accent);color:var(--accent-ink)}
+  .band-stop{background:#FFF3D6;color:#5C3D00;border:2px solid #B26A00}
+  .band small{display:block;font-family:var(--font-b);font-weight:400;font-size:15px;margin-top:4px}
+  .fix{margin-top:14px;padding-top:12px;border-top:1px solid var(--border)}
+  .fix h3{font-family:var(--font-h);font-size:18px;margin:0 0 6px}
+  .fix ol{padding-left:22px;margin:8px 0 12px}
+  .fix li{margin:6px 0}
+  .fix summary{cursor:pointer;font-weight:600}
+  .gates{margin-top:14px;padding-top:12px;border-top:1px solid var(--border)}
+  .gate-h{font-weight:600;margin:0 0 4px}
+  .gate{display:flex;gap:12px;align-items:flex-start;margin-top:10px;cursor:pointer}
+  .gate input{flex:none;width:22px;height:22px;margin-top:3px;accent-color:var(--ok)}
+  .gate-note{font-size:15px;color:var(--muted)}
+  #gate-open{color:var(--ok);font-weight:600}
+  .found{border-collapse:collapse;width:100%;margin:8px 0 4px;font-size:15px}
+  .found th,.found td{text-align:left;vertical-align:top;padding:7px 10px;border-top:1px solid var(--border)}
+  .found th{width:42%;font-weight:600;color:var(--muted)}
+  .found td{font-weight:600;overflow-wrap:anywhere}
+  @media (max-width:600px){ .found th,.found td{display:block;width:100%} .found th{padding-bottom:0;border-top:1px solid var(--border)} .found td{border-top:0;padding-top:2px} }
+  .owner-first{border-color:#B26A00;border-left-color:#B26A00;border-width:2px;border-left-width:6px}
+  @media (max-width:600px){ .look-row{grid-template-columns:1fr;gap:6px} }
+</style>
+<style>
+/* The brand's own colour and font names and its approved design details, from the brand master. Changed only through "update the brand". */
+/* --- Generated from tokens.yml. Do NOT hand-edit. Run /brand-style regen instead. --- */
+:root {
+  --accent:     #00AEC7;
+  --accent-alt: #004172;
+  --accent-2:     #00AEC7;  /* optional second brand colour, solid: buttons, fills, rules */
+  --on-accent-2: #000000;
+  --accent-bg:  rgba(0, 174, 199, 0.06);
+  --bg-base:    #FFFFFF;
+  --bg-alt:     #F7F6F5;
+  --bg-card:    #FFFFFF;
+  --border:     #E1E4E8;
+  --border-med: #BEC4CD;
+  --text-primary:   #333333;
+  --text-secondary: #444444;
+  --text-muted:     #444444;
+  --green:    #0E9F6E;
+  --green-bg: #F7F6F5;
+  --amber:    #F59E0B;
+  --amber-bg: #F7F6F5;
+  --red:      #C02B0A;
+  --red-bg:   rgba(192, 43, 10, 0.07);
+  --accent-border: rgba(0, 174, 199, 0.25);
+  --blue:     #00AEC7;
+  --blue-bg:  #F7F6F5;
+  --purple:   #00AEC7;
+  --purple-bg: #F7F6F5;
+  --meta-blue:    #00AEC7;
+  --meta-bg:      #F7F6F5;
+  --google-color: #00AEC7;
+  --google-bg:    #F7F6F5;
+  --r-sm:    6px;
+  --r-md:   10px;
+  --r-lg:   8px;
+  --r-xl:   20px;
+  --r-full: 999px;
+  --card-radius: 8px;
+  --shadow:  0 5px 15px rgba(0, 0, 0, 0.08);
+  --space:   8px;
+  --sidebar-w:    320px;
+  --app-header-h:  60px;
+  --wrap-max:    1200px;
+  --font-heading: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  --font-body:    'Poppins', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  --weight-heading: 700;
+  --weight-body:    400;
+}
+
+/* heading-bar: Heading accent bar (approved 17/11/2026) */
+.bd-heading-bar { position: relative; font-family: var(--font-heading); font-weight: 700; font-size: 32px; line-height: 1.3; letter-spacing: -0.8px; color: var(--text-primary); margin: 0 0 20px 0; }
+.bd-heading-bar::before { content: ""; display: inline-block; position: relative; top: calc(-0.1 * 1em); vertical-align: middle; height: calc(4px + 0.8em); margin-right: calc(5px + 0.2em); border-left: calc(2px + 0.16em) solid var(--accent); }
+/* teal-sub-heading: Teal sub heading under a section heading (approved 17/11/2026) */
+.bd-teal-sub-heading { font-family: var(--font-heading); font-weight: 700; font-size: 24px; line-height: 1.4; letter-spacing: -0.8px; color: var(--accent); margin: 0 0 20px 0; }
+.bd-teal-sub-heading.bd-small { font-size: 19px; }
+/* tick-circle: Ticks in lists (approved 17/11/2026) */
+.bd-tick-circle { list-style: none; padding: 0; margin: 0; }
+.bd-tick-circle li { position: relative; padding-left: 36px; margin: 0 0 12px 0; font-family: var(--font-body); font-weight: 300; font-size: 16px; line-height: 1.55; color: var(--text-secondary); }
+.bd-tick-circle li::before { content: ""; position: absolute; left: 0; top: 0; width: 24px; height: 24px; background-color: var(--accent); -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'><path d='M24 4C12.95 4 4 12.95 4 24c0 11.04 8.95 20 20 20 11.04 0 20-8.96 20-20 0-11.05-8.96-20-20-20zm-4 30L10 24l2.83-2.83L20 28.34l15.17-15.17L38 16 20 34z'/></svg>") center / contain no-repeat; mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'><path d='M24 4C12.95 4 4 12.95 4 24c0 11.04 8.95 20 20 20 11.04 0 20-8.96 20-20 0-11.05-8.96-20-20-20zm-4 30L10 24l2.83-2.83L20 28.34l15.17-15.17L38 16 20 34z'/></svg>") center / contain no-repeat; }
+/* plain-bullet-list: Plain bullet lists in body text (approved 17/11/2026) */
+.bd-plain-bullet-list { list-style: disc; padding-left: 30px; margin: 0 0 20px 0; font-family: var(--font-body); font-weight: 300; font-size: 16px; line-height: 1.55; color: var(--text-secondary); }
+/* heading-colours: Heading colours (approved 17/11/2026) */
+.bd-heading-colours h2 { color: var(--text-primary); }
+.bd-heading-colours .bd-card-title { color: var(--accent-alt); }
+.bd-heading-colours .bd-sub { color: var(--accent); }
+/* heading-type: Heading weight and spacing (approved 17/11/2026) */
+.bd-heading-type { font-family: var(--font-heading); font-weight: 700; letter-spacing: -0.8px; text-transform: none; color: var(--text-primary); }
+.bd-heading-type.bd-h1 { font-size: 44px; line-height: 1.2; }
+.bd-heading-type.bd-h2 { font-size: 32px; line-height: 1.3; }
+.bd-heading-type.bd-h3 { font-size: 24px; line-height: 1.4; }
+.bd-heading-type.bd-h4 { font-size: 19px; line-height: 1.4; }
+/* body-text: Body text (approved 17/11/2026) */
+.bd-body-text { font-family: var(--font-body); font-weight: 300; font-size: 16px; line-height: 1.55; color: var(--text-secondary); }
+/* button-teal: Main button (approved 17/11/2026) */
+.bd-button-teal { display: inline-block; box-sizing: border-box; padding: 0 30px; line-height: 46px; font-family: var(--font-body); font-size: 16px; font-weight: 500; letter-spacing: 0; text-align: center; text-decoration: none; text-transform: none; color: #FEFEFE; background-color: var(--accent); border: none; border-radius: 4px; transition: background-color 0.1s ease-in-out; cursor: pointer; }
+.bd-button-teal:hover { background-color: #00A1B8; color: #FEFEFE; }
+.bd-button-teal.bd-large { padding: 0 40px; line-height: 60px; }
+.bd-button-teal.bd-full { display: block; width: 100%; }
+/* arrow-link: Arrow link (approved 17/11/2026) */
+.bd-arrow-link { position: relative; display: inline-block; padding: 0 43px 0 0; line-height: 1.55; font-family: var(--font-body); font-size: 16px; font-weight: 500; color: #FEFEFE; text-decoration: none; background: none; }
+.bd-arrow-link::after { content: ""; position: absolute; top: 50%; right: 0; width: 35px; height: 10px; transform: translateY(-50%); background-color: currentColor; -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='34' height='10' viewBox='0 0 34 10'><path d='M33.59,4.3,26.06,0l-.8,1.4,5.2,2.79H0V5.81H30.46l-5.2,2.79.8,1.4,7.53-4.3A.81.81,0,0,0,33.59,4.3Z'/></svg>") right center / contain no-repeat; mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='34' height='10' viewBox='0 0 34 10'><path d='M33.59,4.3,26.06,0l-.8,1.4,5.2,2.79H0V5.81H30.46l-5.2,2.79.8,1.4,7.53-4.3A.81.81,0,0,0,33.59,4.3Z'/></svg>") right center / contain no-repeat; }
+.bd-arrow-link.bd-on-light { color: var(--text-primary); }
+/* text-link-teal: Teal text links (approved 17/11/2026) */
+.bd-text-link-teal { color: var(--accent); text-decoration: none; font-family: var(--font-body); }
+.bd-text-link-teal.bd-strong { font-weight: 700; font-size: 19px; letter-spacing: -0.8px; }
+/* hero-photo: Hero photo with dark overlay (approved 17/11/2026) */
+.bd-hero-photo { position: relative; padding: 120px 40px; background-color: #112337; background-size: cover; background-position: center; color: #FEFEFE; }
+.bd-hero-photo::before { content: ""; position: absolute; inset: 0; background: rgba(3, 0, 0, 0.5); }
+.bd-hero-photo > * { position: relative; }
+.bd-hero-photo .bd-hero-label { font-family: var(--font-body); font-size: 16px; font-weight: 300; margin: 0 0 4px 0; }
+.bd-hero-photo h1 { font-family: var(--font-heading); font-weight: 700; font-size: 44px; line-height: 1.2; letter-spacing: -0.8px; color: #FEFEFE; margin: 0 0 12px 0; }
+.bd-hero-photo .bd-hero-sub { font-family: var(--font-heading); font-weight: 700; font-size: 24px; line-height: 1.4; letter-spacing: -0.8px; color: #FEFEFE; margin: 0 0 20px 0; max-width: 640px; }
+@media (max-width: 640px) { .bd-hero-photo { text-align: center; padding: 80px 20px; } .bd-hero-photo h1 { font-size: 30px; } }
+/* enquiry-card: Enquiry form card over the hero (approved 17/11/2026) */
+.bd-enquiry-card { background: var(--bg-card); box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.08); padding: 40px; display: grid; grid-template-columns: 1fr 3fr; gap: 30px; margin-top: -120px; position: relative; }
+.bd-enquiry-card .bd-enquiry-title { font-family: var(--font-heading); font-weight: 700; font-size: 32px; line-height: 1.3; letter-spacing: -0.8px; color: var(--text-primary); margin: 0 0 10px 0; }
+.bd-enquiry-card .bd-enquiry-help { font-family: var(--font-heading); font-weight: 700; font-size: 19px; line-height: 1.4; letter-spacing: -0.8px; color: var(--accent); }
+@media (max-width: 640px) { .bd-enquiry-card { grid-template-columns: 1fr; margin-top: 0; text-align: center; padding: 30px 20px; } }
+/* form-fields: Form fields (approved 17/11/2026) */
+.bd-form-fields input, .bd-form-fields select, .bd-form-fields textarea { box-sizing: border-box; width: 100%; height: 38px; padding: 0 12px; font-family: var(--font-body); font-size: 14px; color: #112337; background: #FFFFFF; border: 1px solid #686E77; border-radius: 3px; }
+.bd-form-fields textarea { height: auto; min-height: 48px; padding: 8px 12px; }
+.bd-form-fields label { display: block; font-family: var(--font-body); font-size: 14px; font-weight: 500; color: #112337; margin: 0 0 4px 0; }
+.bd-form-fields .bd-required { color: #C02B0A; font-size: 12px; font-style: italic; }
+/* photo-text-panel: Photo and text panel (approved 17/11/2026) */
+.bd-photo-text-panel { display: grid; grid-template-columns: 1fr 1fr; background: var(--bg-card); box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.08); text-align: left; }
+.bd-photo-text-panel .bd-panel-photo { background-color: #E1E4E8; background-size: cover; background-position: center; min-height: 260px; }
+.bd-photo-text-panel .bd-panel-body { padding: 40px; }
+.bd-photo-text-panel.bd-photo-right .bd-panel-photo { order: 2; }
+@media (max-width: 960px) { .bd-photo-text-panel { grid-template-columns: 1fr; } .bd-photo-text-panel.bd-photo-right .bd-panel-photo { order: 0; } }
+/* card-style: Card style (approved 17/11/2026) */
+.bd-card-style { background: var(--bg-card); box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.08); padding: 40px; color: var(--text-secondary); }
+/* service-photo-card: Service card with photo on top (approved 17/11/2026) */
+.bd-service-photo-card { background: var(--bg-card); box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.08); }
+.bd-service-photo-card .bd-card-photo { height: 180px; background-color: #E1E4E8; background-size: cover; background-position: center; }
+.bd-service-photo-card .bd-card-body { padding: 20px; text-align: center; font-family: var(--font-body); font-weight: 300; color: var(--text-secondary); }
+.bd-service-photo-card .bd-card-title { font-family: var(--font-heading); font-weight: 700; font-size: 24px; line-height: 1.4; letter-spacing: -0.8px; color: var(--accent-alt); margin: 0 0 12px 0; }
+/* tint-band: Pale teal band (approved 17/11/2026) */
+.bd-tint-band { background: var(--accent-bg); padding: 70px 40px; }
+/* three-column-points: Three points side by side (approved 17/11/2026) */
+.bd-three-column-points { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+.bd-three-column-points h3 { font-family: var(--font-heading); font-weight: 700; font-size: 19px; line-height: 1.4; letter-spacing: -0.8px; color: var(--text-primary); margin: 0 0 12px 0; }
+.bd-three-column-points p { font-family: var(--font-body); font-weight: 300; font-size: 16px; line-height: 1.55; color: var(--text-secondary); margin: 0 0 10px 0; }
+@media (max-width: 640px) { .bd-three-column-points { grid-template-columns: 1fr; } }
+/* why-choose-band: Closing photo band (approved 17/11/2026) */
+.bd-why-choose-band { position: relative; padding: 70px 40px; background-color: #112337; background-size: cover; background-position: center; color: #FEFEFE; }
+.bd-why-choose-band::before { content: ""; position: absolute; inset: 0; background: rgba(0, 0, 0, 0.57); }
+.bd-why-choose-band > * { position: relative; }
+.bd-why-choose-band h2 { font-family: var(--font-heading); font-weight: 700; font-size: 44px; line-height: 1.2; letter-spacing: -0.8px; color: #FEFEFE; margin: 0 0 20px 0; }
+.bd-why-choose-band p { font-family: var(--font-heading); font-weight: 700; font-size: 19px; line-height: 1.4; letter-spacing: -0.8px; color: #FEFEFE; max-width: 560px; margin: 0 0 20px 0; }
+@media (max-width: 640px) { .bd-why-choose-band { text-align: center; padding: 50px 20px; } .bd-why-choose-band h2 { font-size: 32px; } }
+/* header: Header and menu (approved 17/11/2026) */
+.bd-header { display: flex; align-items: center; gap: 28px; background: #FFFFFF; padding: 10px 40px; min-height: 80px; font-family: var(--font-body); }
+.bd-header .bd-header-logo { height: 88px; margin-right: auto; }
+.bd-header a.bd-menu { position: relative; font-size: 17px; font-weight: 500; color: var(--text-primary); text-decoration: none; }
+.bd-header a.bd-menu.bd-active { color: #000000; }
+.bd-header a.bd-menu.bd-active::after { content: ""; position: absolute; left: 0; right: 0; bottom: -6px; height: 2px; background: var(--accent); }
+.bd-header .bd-header-phone { font-family: var(--font-heading); font-weight: 700; font-size: 19px; letter-spacing: -0.8px; color: var(--accent); text-decoration: none; }
+/* footer-light: Footer (approved 17/11/2026) */
+.bd-footer-light { display: grid; grid-template-columns: 1.2fr 1fr 1fr 1fr; gap: 30px; background: #FFFFFF; padding: 40px; font-family: var(--font-body); font-weight: 300; font-size: 16px; line-height: 1.55; color: var(--text-secondary); }
+.bd-footer-light h3 { font-family: var(--font-heading); font-size: 16px; font-weight: 500; letter-spacing: 0; color: var(--accent); margin: 0 0 12px 0; }
+.bd-footer-light a { color: #000000; text-decoration: none; display: block; margin: 0 0 8px 0; }
+.bd-footer-light a.bd-contact { color: var(--accent); }
+@media (max-width: 640px) { .bd-footer-light { grid-template-columns: 1fr; text-align: center; } }
+/* copyright-bar: Navy copyright bar (approved 17/11/2026) */
+.bd-copyright-bar { display: flex; justify-content: space-between; gap: 20px; background: var(--accent-alt); color: rgba(254, 254, 254, 0.8); padding: 20px 40px; font-family: var(--font-body); font-weight: 300; font-size: 14px; }
+@media (max-width: 640px) { .bd-copyright-bar { flex-direction: column; text-align: center; } }
+/* phone-bottom-bar: Phone bottom bar (approved 17/11/2026) */
+.bd-phone-bottom-bar { display: grid; grid-template-columns: 1fr 1fr; font-family: var(--font-body); font-size: 16px; font-weight: 500; text-align: center; }
+.bd-phone-bottom-bar a { display: block; line-height: 46px; color: #FEFEFE; text-decoration: none; }
+.bd-phone-bottom-bar a:first-child { background: #00355E; }
+.bd-phone-bottom-bar a:last-child { background: var(--accent); }
+/* faq-rows: Questions that open and close (approved 17/11/2026) */
+.bd-faq-rows > * { display: flex; align-items: center; gap: 15px; padding: 20px 0 0 0; margin: 20px 0 0 0; border-top: 1px solid rgba(0, 0, 0, 0.1); font-family: var(--font-heading); font-weight: 700; font-size: 19px; line-height: 1.4; color: var(--text-primary); }
+.bd-faq-rows > *:first-child { border-top: none; margin-top: 0; padding-top: 0; }
+.bd-faq-rows > *::after { content: "+"; margin-left: auto; font-weight: 300; color: var(--text-secondary); }
+/* contact-rows: Contact details with line icons (approved 17/11/2026) */
+.bd-contact-rows > * { display: flex; align-items: center; gap: 14px; padding: 12px 0; border-top: 1px solid rgba(0, 0, 0, 0.1); font-family: var(--font-heading); font-weight: 700; font-size: 19px; letter-spacing: -0.8px; color: var(--text-primary); }
+.bd-contact-rows > *:first-child { border-top: none; }
+/* lead-line: Bold lead line (approved 17/11/2026) */
+.bd-lead-line { font-family: var(--font-heading); font-weight: 700; font-size: 20px; line-height: 1.5; color: var(--text-primary); }
+/* section-spacing: Space between sections (approved 17/11/2026) */
+.bd-section-spacing { padding-top: 70px; padding-bottom: 70px; }
+.bd-section-spacing.bd-large { padding-top: 140px; padding-bottom: 140px; }
+@media (max-width: 960px) { .bd-section-spacing, .bd-section-spacing.bd-large { padding-top: 40px; padding-bottom: 40px; } }
+</style>
+</head>
+<body class="bd-body-text">
+<div class="wrap">
+  <header class="bd-header">
+    <img src="assets/client-logo.png" alt="Simply Human Resources">
+    <span class="tag">Domain set-up &middot; 23/11/2026</span>
+  </header>
+  <div class="rule"></div>
+
+  <h1 class="bd-heading-bar">Point Your Domain To Cloudflare</h1>
+  <p class="lead bd-lead-line">This points your domain to a free Cloudflare account that you own, so new pages can be added quickly and safely. Your domain stays registered where it is, and your website and your email stay exactly as they are.</p>
+
+  <div class="before bd-tint-band">
+    <h2 class="bd-teal-sub-heading">Before You Start</h2>
+    <ul><li>This page is written so you can do it yourself, in your own time. Every step is laid out, with a picture of what you'll see.</li><li>If you'd like a hand at any point, press <b class="key key-ask">Ask Adam</b> and I'll jump online and walk you through it.</li><li>Your domain comes first: start with the check on it, just below.</li><li>Then two short sittings, about 15 minutes in all: steps 1 to 3 first, then steps 4 and 5 once I've checked every record.</li><li>Use a <b>computer</b>.</li><li>For step 4 only, have the sign-in for where your domain is registered.</li><li>Type the wording in the <span class="val">shaded boxes</span> exactly as shown.</li><li>Every step shows a small picture of each button, switch or box you'll meet, with <span class="chip chip-press">Press this</span> or <span class="chip chip-leave">Leave as it is</span> beside it. The pictures are examples, so your screen may look a little different.</li><li>Tick each step as you go. Your ticks are saved on this device.</li><li><b class="key key-ask">Ask Adam</b> is on every step. It opens an email with the step already filled in.</li></ul>
+  </div>
+
+  <div class="band band-first" id="band-first">The first step is to make sure you own and control your domain.</div>
+
+  <div class="before owner bd-tint-band" id="owner"><h2 class="bd-teal-sub-heading">Start Here: Make Sure Your Domain Is Yours</h2><p>I looked up <span class="val">simplyhumanresources.com.au</span> on the public register. It's registered with <span class="val">GoDaddy</span>, in the name of <span class="val">Simply Human Resources Pty Ltd</span>.</p><p>Here's everything I found, so you don't have to look it up yourself:</p><table class="found"><tr><th>Registered with</th><td>GoDaddy</td></tr><tr><th>Registered to</th><td>Simply Human Resources Pty Ltd</td></tr><tr><th>ABN or ACN on the register</th><td>ABN 55697874203</td></tr><tr><th>Contact name on the register</th><td>Karen Conrades</td></tr><tr><th>Contact email on the register</th><td>karenconrades@gmail.com</td></tr><tr><th>Technical contact on the register</th><td>Karen Conrades</td></tr><tr><th>Your records are held on</th><td>ns73.domaincontrol.com, ns74.domaincontrol.com</td></tr><tr><th>Your email runs on</th><td>Microsoft 365 (from the MX record)</td></tr></table><p>The <b>contact email</b> is the one to look at closely. It's the address the register holds for whoever looks after this domain. If it's yours, or one your business keeps, that's a good sign. If it belongs to someone else, that's the part to change.</p><p>That's your business's name, which is how it should be. The name is only half of it, though. The sign-in matters just as much: if the login belongs to someone else (a web developer, or someone who has since left), you don't fully own your domain, even with your name on it.</p><p>In all my years of doing this, I see this a lot. It's okay, but it's something to change, because like everything in your business, you should own the asset completely.</p><div class="gates"><p class="gate-h">Already have access? Great. Just confirm it here, then go ahead to step 1:</p>
+<label class="gate"><input type="checkbox" data-gate="own"><span><b>1. You own and control your domain name.</b> Tick this once the name and the contact email above are yours, or your business's.</span></label>
+<label class="gate"><input type="checkbox" data-gate="signin"><span><b>2. You can sign in to it.</b> Tick this once you've signed in to GoDaddy yourself, with an email address the business keeps.</span></label>
+<p class="gate-note" id="gate-closed">Both yes? Tick them and carry on to step 1. If either one isn't right, or you're not sure, press <b class="key key-ask">Ask Adam</b> and I'll help you sort it out first.</p>
+<p class="gate-note" id="gate-open" hidden>Both ticked. You can access your domain, and you're ready to point it to Cloudflare and create your new Cloudflare account. Carry on to step 1.</p></div><details class="fix"><summary>Can't Sign In, Or Someone Else Holds The Login?</summary><ol><li><b>Ask whoever set it up.</b> A web developer or a past staff member often holds the sign-in. Press the button below: it opens an email, already written, for you to send to them.</li><li><b>Or go straight to GoDaddy.</b> As the name on the domain, you can ask them how to get your own sign-in. Have your business details ready.</li><li><b>Still stuck?</b> Press <b class="key key-ask">Ask Adam</b> and I'll help you sort it out.</li></ol><a class="btn btn-go bd-button-teal" href="mailto:?subject=simplyhumanresources.com.au%3A%20the%20sign-in%20for%20my%20domain&amp;body=Hi%2C%0A%0AI%27m%20tidying%20up%20the%20records%20for%20my%20business%2C%20Simply%20Human%20Resources%2C%20and%20I%27d%20like%20to%20hold%20the%20sign-in%20for%20simplyhumanresources.com.au%20myself.%0A%0ACould%20you%20please%20let%20me%20know%20how%20I%20can%20get%20my%20own%20sign-in%20for%20the%20domain%2C%20or%20move%20it%20into%20an%20account%20under%20my%20own%20email%20address%3F%0A%0AThe%20email%20address%20it%20should%20be%20under%3A%20%0A%0AThank%20you%20for%20your%20help.%0A%0AKind%20regards%2C%0A">Open The Email, Ready To Send</a></details><a class="btn btn-ask" href="mailto:adam@innercirclemarketing.com.au?subject=Domain%20set-up%2C%20where%20my%20domain%20is%20registered%3A%20Simply%20Human%20Resources&amp;body=Hi%20Adam%2C%20I%27d%20like%20a%20hand%20with%20where%20simplyhumanresources.com.au%20is%20registered.%0A%0AWhat%20I%20know%3A%20%0A">Ask Adam</a></div>
+
+  <div class="before why bd-tint-band" id="why">
+    <h2 class="bd-teal-sub-heading">Why We're Doing This</h2>
+    <ul><li><b>What Cloudflare is.</b> A free, widely used control panel for a domain. It holds the list of records that tell the internet where your website and your email live.</li><li><b>Why it helps.</b> With your domain there, new pages for your marketing can be added on your own web address quickly and safely, without touching your website.</li><li><b>It's yours.</b> The account is in your business's name. I'm added to it, and you can remove me at any time.</li><li><b>Everything comes along.</b> Cloudflare copies your existing records across by itself. You don't type or rebuild any of them, and I check every one against a copy saved before we start.</li><li><b>What stays exactly as it is.</b> Your domain stays registered where it is now, in your name. Your website stays where it's hosted. Your email keeps working the same way.</li><li><b>Only one thing changes.</b> One setting where your domain is registered (step 4), made only after my check, and it can be put back.</li><li><b>What you'll see on the way.</b> Cloudflare's screens show switches and settings you don't need. On every step I show you what each one looks like and whether to press it or leave it. If it's not on this page, leave it.</li></ul>
+  </div>
+
+  <div class="band band-stop" id="band-stop">Please don't start here until your domain is in your name and you have access to it.<small>Both ticks above done? Then you're ready for step 1.</small></div>
+
+  <div class="progress"><div class="bar"><i id="bar"></i></div><small id="count"></small></div>
+
+  <section class="step bd-card-style" id="account">
+    <div class="step-head"><div class="num">1</div><div style="flex:1">
+      <h2 class="bd-heading-type">Create Your Cloudflare Account</h2>
+      <ol class="bd-plain-bullet-list"><li>Press the button. It opens Cloudflare's sign-up page.</li><li>Email: use an address the business will always keep, such as an accounts or admin address, so the account never leaves with one person.</li><li>Password: choose one that's used nowhere else.</li><li>If Cloudflare asks you to tick a box to show you're a person, tick it.</li><li>Click <b>Create Account</b>.</li><li>If Cloudflare offers other ways to sign up, please use the email and password boxes, so the account belongs to the business.</li><li>Cloudflare sends you an email. Open it and click the link to confirm your address.</li><li>Save the password wherever you keep your passwords.</li><li>If Cloudflare asks what you'd like to do first, or offers a tour or a paid plan, you can skip it. The next step starts from the <b>Domains</b> page.</li></ol>
+      <div class="look"><p class="look-h">What You'll See, And What To Do</p><div class="look-row"><div class="look-pic"><span class="eg" tabindex="0"><span class="mk-lab">Email</span><span class="mk-field">accounts@...</span></span><small class="eg-tag">Example only</small></div><div class="look-do"><span class="chip chip-type">Type here</span> The business's own address.</div></div><div class="look-row"><div class="look-pic"><span class="eg" tabindex="0"><span class="mk-lab">Password</span><span class="mk-field">&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;</span></span><small class="eg-tag">Example only</small></div><div class="look-do"><span class="chip chip-type">Type here</span> A new password, saved where you keep your passwords.</div></div><div class="look-row"><div class="look-pic"><span class="eg" tabindex="0"><span class="mk-btn">Create Account</span></span><small class="eg-tag">Example only</small></div><div class="look-do"><span class="chip chip-press">Press this</span> Once both boxes are filled in.</div></div><p class="eg-note" hidden>This is just an example of how it could look. It isn't a link.</p></div>
+      <a class="btn btn-go bd-button-teal" href="https://dash.cloudflare.com/sign-up" target="_blank" rel="noopener">Open Cloudflare</a>
+      <a class="btn btn-ask" href="mailto:adam@innercirclemarketing.com.au?subject=Domain%20set-up%2C%20step%201%3A%20Simply%20Human%20Resources&amp;body=Hi%20Adam%2C%20I%27m%20stuck%20on%20step%201%20%28Create%20Your%20Cloudflare%20Account%29.%0A%0AWhat%20I%20see%3A%20%0A">Ask Adam</a>
+      
+      <div class="see"><b>You should now see:</b> your new Cloudflare account, signed in.</div>
+      <p class="snag">The free plan is all that's needed, and the account is yours.</p>
+      <label class="tick"><input type="checkbox" data-step="account"> Done, next step</label>
+    </div></div>
+  </section>
+  <section class="step bd-card-style" id="domain">
+    <div class="step-head"><div class="num">2</div><div style="flex:1">
+      <h2 class="bd-heading-type">Add Your Domain</h2>
+      <ol class="bd-plain-bullet-list"><li>In Cloudflare, open <b>Domains</b>, then click <b>Onboard a domain</b>.</li><li>Type <span class="val">simplyhumanresources.com.au</span> exactly, with no www in front.</li><li>Cloudflare asks how you'd like to add your records. Keep the choice where it finds your existing records by itself. That's how everything comes along.</li><li>Click <b>Continue</b>.</li><li>Choose the <b>Free</b> plan. It's all that's needed. If a paid plan or an extra is offered, you don't need it.</li><li>Cloudflare now shows a list of the records it found, under <b>Review DNS records</b>. It looks technical. You don't need to read it or understand it.</li><li>Beside some records is a switch with an orange cloud and the word <b>Proxied</b>. Others show a grey cloud and <b>DNS only</b>. Leave every switch exactly as Cloudflare shows it, whether it's on or off. I set these myself during my check.</li><li>A column called <b>TTL</b> shows <b>Auto</b>. Leave it. It's only how often a record is refreshed.</li><li>Please don't add, edit or delete anything in the list. If a record looks wrong or missing, leave it: I check every one.</li><li>Scroll to the bottom of the list and click <b>Continue</b>.</li><li>If Cloudflare shows a warning or asks you to confirm something here, please stop and press Ask Adam.</li><li>Cloudflare now shows two nameservers and asks you to update them. <b>Please stop here for now.</b> That part is step 4, after my check.</li></ol>
+      <div class="look"><p class="look-h">What You'll See, And What To Do</p><div class="look-row"><div class="look-pic"><span class="eg" tabindex="0"><span class="mk-btn">Onboard a domain</span></span><small class="eg-tag">Example only</small></div><div class="look-do"><span class="chip chip-press">Press this</span> On the <b>Domains</b> page.</div></div><div class="look-row"><div class="look-pic"><span class="eg" tabindex="0"><span class="mk-lab">Domain</span><span class="mk-field">simplyhumanresources.com.au</span></span><small class="eg-tag">Example only</small></div><div class="look-do"><span class="chip chip-type">Type here</span> Your domain, with no www.</div></div><div class="look-row"><div class="look-pic"><span class="eg" tabindex="0"><span class="mk-btn">Continue</span></span><small class="eg-tag">Example only</small></div><div class="look-do"><span class="chip chip-press">Press this</span> At the bottom of each screen, when you've done what's above.</div></div><div class="look-row"><div class="look-pic"><span class="eg" tabindex="0"><span class="mk-btn quiet">Free</span></span><small class="eg-tag">Example only</small></div><div class="look-do"><span class="chip chip-choose">Choose this</span> The free plan. It's all that's needed.</div></div><div class="look-row"><div class="look-pic"><span class="eg" tabindex="0"><span class="mk-sw on"><svg class="mk-cloud" viewBox="0 0 24 16" aria-hidden="true"><path d="M19 16H6a5 5 0 0 1-.6-9.96A6.5 6.5 0 0 1 18 7.5 4.25 4.25 0 0 1 19 16z"/></svg><span class="mk-tog"><i></i></span><b>Proxied</b></span></span><small class="eg-tag">Example only</small></div><div class="look-do"><span class="chip chip-leave">Leave as it is</span> Orange cloud, <b>Proxied</b>. Don't turn it off.</div></div><div class="look-row"><div class="look-pic"><span class="eg" tabindex="0"><span class="mk-sw off"><svg class="mk-cloud" viewBox="0 0 24 16" aria-hidden="true"><path d="M19 16H6a5 5 0 0 1-.6-9.96A6.5 6.5 0 0 1 18 7.5 4.25 4.25 0 0 1 19 16z"/></svg><span class="mk-tog"><i></i></span><b>DNS only</b></span></span><small class="eg-tag">Example only</small></div><div class="look-do"><span class="chip chip-leave">Leave as it is</span> Grey cloud, <b>DNS only</b>. Don't turn it on.</div></div><div class="look-row"><div class="look-pic"><span class="eg" tabindex="0"><span class="mk-lab">TTL</span><span class="mk-field">Auto &#9662;</span></span><small class="eg-tag">Example only</small></div><div class="look-do"><span class="chip chip-leave">Leave as it is</span> Don't open it or change it.</div></div><div class="look-row"><div class="look-pic"><span class="eg" tabindex="0"><span class="mk-btn quiet">Edit</span><span class="mk-btn quiet">Delete</span><span class="mk-btn quiet">Add record</span></span><small class="eg-tag">Example only</small></div><div class="look-do"><span class="chip chip-leave">Leave as it is</span> Anything that edits, deletes or adds a record.</div></div><div class="look-row"><div class="look-pic"><span class="eg" tabindex="0"><span class="mk-status">Pending Nameserver Update</span></span><small class="eg-tag">Example only</small></div><div class="look-do"><span class="chip chip-none">Nothing to press</span> This is the right place to stop. The two nameservers wait for step 4.</div></div><p class="eg-note" hidden>This is just an example of how it could look. It isn't a link.</p></div>
+      
+      <a class="btn btn-ask" href="mailto:adam@innercirclemarketing.com.au?subject=Domain%20set-up%2C%20step%202%3A%20Simply%20Human%20Resources&amp;body=Hi%20Adam%2C%20I%27m%20stuck%20on%20step%202%20%28Add%20Your%20Domain%29.%0A%0AWhat%20I%20see%3A%20%0A">Ask Adam</a>
+      
+      <div class="see"><b>You should now see:</b> your domain listed in Cloudflare as <b>Pending Nameserver Update</b>.</div>
+      <p class="snag">Nothing has changed for your website or your email. Cloudflare has only taken a copy of your records.</p>
+      <label class="tick"><input type="checkbox" data-step="domain"> Done, next step</label>
+    </div></div>
+  </section>
+  <section class="step bd-card-style" id="adam">
+    <div class="step-head"><div class="num">3</div><div style="flex:1">
+      <h2 class="bd-heading-type">Add Me To Your Account</h2>
+      <ol class="bd-plain-bullet-list"><li>In Cloudflare, open the <b>Members</b> page, then click <b>Invite members</b>.</li><li>Under <b>Add email addresses</b>, type <span class="val">adam@innercirclemarketing.com.au</span>.</li><li>Under <b>Add permission policies</b>, keep the whole account selected, choose the role <b>Administrator</b>, then click <b>Create policy</b>.</li><li>Click <b>Invite members</b>.</li><li>Do the same for Neil: <span class="val">neil@netlogyx.com.au</span>, with the role <b>Administrator</b>.</li><li>Press <b>Tell Adam I'm Ready For His Check</b> below.</li></ol>
+      <div class="look"><p class="look-h">What You'll See, And What To Do</p><div class="look-row"><div class="look-pic"><span class="eg" tabindex="0"><span class="mk-btn">Invite members</span></span><small class="eg-tag">Example only</small></div><div class="look-do"><span class="chip chip-press">Press this</span> On the <b>Members</b> page, to start. The same button sends the invite at the end.</div></div><div class="look-row"><div class="look-pic"><span class="eg" tabindex="0"><span class="mk-lab">Add email addresses</span><span class="mk-field">adam@innercirclemarketing.com.au</span></span><small class="eg-tag">Example only</small></div><div class="look-do"><span class="chip chip-type">Type here</span> My address, exactly as shown.</div></div><div class="look-row"><div class="look-pic"><span class="eg" tabindex="0"><span class="mk-lab">Role</span><span class="mk-field">Administrator</span></span><small class="eg-tag">Example only</small></div><div class="look-do"><span class="chip chip-choose">Choose this</span> The role named exactly this, with nothing in front of it.</div></div><div class="look-row"><div class="look-pic"><span class="eg" tabindex="0"><span class="mk-btn quiet">Create policy</span></span><small class="eg-tag">Example only</small></div><div class="look-do"><span class="chip chip-press">Press this</span> After the role is chosen.</div></div><p class="eg-note" hidden>This is just an example of how it could look. It isn't a link.</p></div>
+      
+      <a class="btn btn-ask" href="mailto:adam@innercirclemarketing.com.au?subject=Domain%20set-up%2C%20step%203%3A%20Simply%20Human%20Resources&amp;body=Hi%20Adam%2C%20I%27m%20stuck%20on%20step%203%20%28Add%20Me%20To%20Your%20Account%29.%0A%0AWhat%20I%20see%3A%20%0A">Ask Adam</a>
+      <a class="btn btn-ask" href="mailto:adam@innercirclemarketing.com.au?subject=Domain%20set-up%2C%20ready%20for%20your%20check%3A%20Simply%20Human%20Resources&amp;body=Hi%20Adam%2C%20steps%201%20to%203%20are%20done%20for%20simplyhumanresources.com.au.%20Over%20to%20you%20for%20the%20check.">Tell Adam I'm Ready For His Check</a>
+      <div class="see"><b>You should now see:</b> my address listed under Members as <b>Pending</b>.</div>
+      <p class="snag">You stay the owner of the account. Administrator lets me look after your records. I can't change who has access, or your billing.</p>
+      <label class="tick"><input type="checkbox" data-step="adam"> Done, next step</label>
+    </div></div>
+  </section>
+  <div class="pause bd-tint-band" id="pause">
+    <h2 class="bd-teal-sub-heading">A Short Pause While I Check Every Record</h2>
+    <p>I now compare Cloudflare's copy with a copy I saved of your records before anything started, and add anything that's missing. Your website and email carry on exactly as they are. I'll let you know when step 4 is ready. Please don't do step 4 before then.</p>
+  </div>
+  <section class="step bd-card-style" id="switch">
+    <div class="step-head"><div class="num">4</div><div style="flex:1">
+      <h2 class="bd-heading-type">Make The One Switch</h2>
+      <ol class="bd-plain-bullet-list"><li>Only once I've told you the check is finished.</li><li>Sign in to <span class="val">GoDaddy</span>, where your domain is registered.</li><li>Open <span class="val">simplyhumanresources.com.au</span> and find its <b>nameservers</b> setting. It may be called Nameservers, Name servers or DNS.</li><li>If you see a setting called <b>DNSSEC</b> that is switched on, please stop and press Ask Adam.</li><li>Remove every nameserver listed there now.</li><li>Add the two nameservers Cloudflare shows on your domain's <b>Overview</b> page. Use the copy button beside each one, so every letter is exact.</li><li>Save.</li></ol>
+      
+      
+      <a class="btn btn-ask" href="mailto:adam@innercirclemarketing.com.au?subject=Domain%20set-up%2C%20step%204%3A%20Simply%20Human%20Resources&amp;body=Hi%20Adam%2C%20I%27m%20stuck%20on%20step%204%20%28Make%20The%20One%20Switch%29.%0A%0AWhat%20I%20see%3A%20%0A">Ask Adam</a>
+      
+      <div class="see"><b>You should now see:</b> only the two Cloudflare nameservers listed for your domain.</div>
+      <p class="snag">This is the only change made where your domain is registered. The domain stays registered there, in your name.</p>
+      <label class="tick"><input type="checkbox" data-step="switch"> Done, next step</label>
+    </div></div>
+  </section>
+  <section class="step bd-card-style" id="wait">
+    <div class="step-head"><div class="num">5</div><div style="flex:1">
+      <h2 class="bd-heading-type">Wait For Cloudflare's Email</h2>
+      <ol class="bd-plain-bullet-list"><li>There's nothing more to do, and nothing to switch on or off. Cloudflare emails you when your domain shows as <b>Active</b>.</li><li>It can take up to 24 hours, and is often much quicker.</li><li>Please don't change anything else in the meantime.</li><li>I then check your website and your email are both working as they were.</li></ol>
+      <div class="look"><p class="look-h">What You'll See, And What To Do</p><div class="look-row"><div class="look-pic"><span class="eg" tabindex="0"><span class="mk-status">Pending Nameserver Update</span></span><small class="eg-tag">Example only</small></div><div class="look-do"><span class="chip chip-none">Nothing to press</span> What it shows while you wait. That's normal.</div></div><div class="look-row"><div class="look-pic"><span class="eg" tabindex="0"><span class="mk-status ok">Active</span></span><small class="eg-tag">Example only</small></div><div class="look-do"><span class="chip chip-none">Nothing to press</span> What it shows when it's finished.</div></div><p class="eg-note" hidden>This is just an example of how it could look. It isn't a link.</p></div>
+      <a class="btn btn-go bd-button-teal" href="https://dash.cloudflare.com/" target="_blank" rel="noopener">Open Cloudflare</a>
+      <a class="btn btn-ask" href="mailto:adam@innercirclemarketing.com.au?subject=Domain%20set-up%2C%20step%205%3A%20Simply%20Human%20Resources&amp;body=Hi%20Adam%2C%20I%27m%20stuck%20on%20step%205%20%28Wait%20For%20Cloudflare%27s%20Email%29.%0A%0AWhat%20I%20see%3A%20%0A">Ask Adam</a>
+      
+      <div class="see"><b>You should now see:</b> your domain listed in Cloudflare as <b>Active</b>.</div>
+      
+      <label class="tick"><input type="checkbox" data-step="wait"> Done, next step</label>
+    </div></div>
+  </section>
+
+  <div class="step finish bd-card-style" id="finish">
+    <h2 class="bd-heading-type">All Done?</h2>
+    <p>Once step 4 is saved, press the button so I know. I'll check your website and email and confirm when everything is live.</p>
+    <a class="btn btn-ask" href="mailto:adam@innercirclemarketing.com.au?subject=Domain%20set-up%20done%3A%20Simply%20Human%20Resources&amp;body=Hi%20Adam%2C%20the%20switch%20is%20made%20for%20simplyhumanresources.com.au.%20Over%20to%20you.">Tell Adam I'm Done</a>
+  </div>
+
+  <p class="meta-note">Steps checked against Cloudflare's own help pages on 20/11/2026. Cloudflare changes its screens from time to time. If one looks different, press Ask Adam on that step.</p>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="who">
+      <img class="face" src="assets/adam.webp" alt="Adam Norris">
+      <div>
+        <p class="name">Adam Norris</p>
+        <a href="tel:+61452692335">0452 692 335</a>
+        <a href="mailto:adam@innercirclemarketing.com.au">adam@innercirclemarketing.com.au</a>
+        <div class="co">Prepared by Adam Norris, Inner Circle Marketing</div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var key='onboarding-domain-simply-human-resources';
+  var boxes=[].slice.call(document.querySelectorAll('.tick input'));
+  var saved={};
+  try{saved=JSON.parse(localStorage.getItem(key)||'{}')}catch(e){}
+  function paint(){
+    var done=0;
+    boxes.forEach(function(b){var s=b.closest('.step');s.classList.toggle('done',b.checked);if(b.checked)done++;});
+    document.getElementById('bar').style.width=(boxes.length?done/boxes.length*100:0)+'%';
+    document.getElementById('count').textContent=done+' of '+boxes.length+' steps done';
+  }
+  boxes.forEach(function(b){
+    b.checked=!!saved[b.dataset.step];
+    b.addEventListener('change',function(){saved[b.dataset.step]=b.checked;try{localStorage.setItem(key,JSON.stringify(saved))}catch(e){}paint();});
+  });
+  paint();
+})();
+
+(function(){
+  [].slice.call(document.querySelectorAll('.eg')).forEach(function(x){
+    function show(ev){ev.preventDefault();var n=x.closest('.look').querySelector('.eg-note');n.hidden=false;clearTimeout(n._t);n._t=setTimeout(function(){n.hidden=true},6000);}
+    x.addEventListener('click',show);
+    x.addEventListener('keydown',function(ev){if(ev.key==='Enter'||ev.key===' ')show(ev);});
+  });
+})();
+(function(){
+  var gates=[].slice.call(document.querySelectorAll('.gate input'));
+  if(!gates.length)return;
+  var key='onboarding-gate-'+location.pathname,saved={};
+  try{saved=JSON.parse(localStorage.getItem(key)||'{}')}catch(e){}
+  function paint(){
+    var open=gates.every(function(g){return g.checked});
+    document.getElementById('gate-closed').hidden=open;
+    document.getElementById('gate-open').hidden=!open;
+  }
+  gates.forEach(function(g){
+    g.checked=!!saved[g.dataset.gate];
+    g.addEventListener('change',function(){saved[g.dataset.gate]=g.checked;try{localStorage.setItem(key,JSON.stringify(saved))}catch(e){}paint();});
+  });
+  paint();
+})();
+</script>
+</body>
+</html>
