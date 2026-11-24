@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>A second part, for your thoughts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root { --navy:#1B2A41; --ember:#E4572E; --gold:#F2A93B; --paper:#FBF7F1; --sand:#F6E7D6; --slate:#33415A; --line:#EADFCE; --soft:#6B7689; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--paper); color:var(--slate); font-family:'Roboto',system-ui,sans-serif; font-weight:400; font-size:18px; line-height:1.65; }
+  .band { background:var(--navy); color:#fff; padding:44px 24px 40px; }
+  .band .in, main { max-width:760px; margin:0 auto; }
+  .draft { display:inline-block; margin-bottom:16px; font-size:12px; font-weight:600; letter-spacing:.06em; color:#fff; background:#b3261e; padding:4px 10px; border-radius:4px; }
+  .eyebrow { font-size:13px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); margin:0 0 10px; }
+  .band h1 { font-weight:600; font-size:34px; line-height:1.2; margin:0 0 14px; }
+  .band p { margin:0 0 10px; color:#E6EBF3; max-width:640px; }
+  .band .small { font-size:15px; color:#B9C3D3; margin-top:16px; }
+  main { padding:8px 24px 90px; }
+  section { margin-top:56px; }
+  .num { display:inline-flex; align-items:center; justify-content:center; width:38px; height:38px; border-radius:50%; background:var(--ember); color:#fff; font-weight:600; font-size:17px; margin-bottom:12px; }
+  h2 { font-weight:600; color:var(--navy); font-size:28px; line-height:1.25; margin:0 0 4px; }
+  .what { font-size:16px; color:var(--soft); margin:0 0 22px; }
+  .lead { font-weight:600; color:var(--navy); font-size:22px; line-height:1.4; border-left:5px solid var(--gold); padding:4px 0 4px 20px; margin:0 0 22px; }
+  p { margin:0 0 16px; }
+  .ask { background:#fff; border:1px solid var(--line); border-radius:12px; padding:22px 22px 8px; margin-top:26px; }
+  .ask .tag { font-size:13px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--ember); margin:0 0 12px; }
+  label.q { display:block; font-weight:600; color:var(--navy); font-size:17px; margin:0 0 8px; }
+  textarea { width:100%; min-height:92px; font:inherit; font-size:17px; color:var(--slate); border:1px solid #D9CDBA; border-radius:8px; padding:12px 14px; margin:0 0 18px; background:#FFFDFA; resize:vertical; }
+  textarea:focus { outline:2px solid var(--gold); border-color:var(--gold); }
+  .value { background:#fff; border:1px solid var(--line); border-radius:14px; margin:0 0 22px; overflow:hidden; }
+  .value .top { padding:24px 24px 6px; }
+  .value h3 { display:flex; align-items:center; gap:12px; font-weight:600; color:var(--navy); font-size:21px; margin:0 0 12px; }
+  .value h3 span { flex:none; display:inline-flex; align-items:center; justify-content:center; width:32px; height:32px; border-radius:50%; background:var(--navy); color:#fff; font-size:15px; }
+  .dont { background:var(--sand); border-radius:8px; padding:14px 16px; margin:4px 0 18px; font-size:16.5px; line-height:1.55; }
+  .dont b { font-weight:600; color:var(--navy); display:block; margin-bottom:3px; }
+  .fb { background:#FFFBF5; border-top:1px solid var(--line); padding:16px 24px 4px; }
+  .tick { display:flex; align-items:center; gap:10px; font-weight:600; color:var(--navy); font-size:16.5px; margin:0 0 12px; cursor:pointer; }
+  .tick input { width:22px; height:22px; accent-color:var(--ember); flex:none; }
+  .fb textarea { min-height:70px; font-size:16px; }
+  .closing { background:var(--navy); color:#fff; border-radius:14px; overflow:hidden; margin:0 0 22px; }
+  .closing .top { padding:24px; }
+  .closing .tagc { color:var(--gold); font-weight:600; font-size:13px; letter-spacing:.08em; text-transform:uppercase; margin:0 0 8px; }
+  .closing b { font-weight:600; font-size:20px; line-height:1.4; display:block; margin-bottom:8px; }
+  .closing p { margin:0; color:#E6EBF3; }
+  .closing .fb { background:#FFFBF5; color:var(--slate); }
+  .lineband { background:var(--sand); border-radius:14px; padding:26px 24px; text-align:center; font-weight:600; color:var(--navy); font-size:22px; line-height:1.4; margin:0 0 6px; }
+  .lineband small { display:block; font-weight:400; font-size:14px; color:var(--soft); letter-spacing:.08em; text-transform:uppercase; margin-bottom:8px; }
+  .btn { display:block; width:100%; background:var(--ember); color:#fff; font:inherit; font-weight:600; font-size:19px; border:0; border-radius:10px; padding:17px 20px; margin-top:26px; cursor:pointer; }
+  .btn:disabled { opacity:.6; cursor:default; }
+  .err { display:none; margin-top:14px; color:#b3261e; font-weight:600; }
+  .end { display:none; max-width:760px; margin:0 auto; padding:80px 24px; text-align:center; }
+  .end h1 { color:var(--navy); font-weight:600; font-size:32px; margin:0 0 12px; }
+  @media (max-width:560px) { body { font-size:17px; } .band h1 { font-size:28px; } h2 { font-size:24px; } .lead, .lineband { font-size:19px; } }
+</style>
+</head>
+<body>
+<div id="page">
+<div class="band"><div class="in">
+  <div id="draftBadge" style="display:none"></div>
+  <p class="eyebrow">Inner Circle Marketing</p>
+  <h1>Thanks again for your insights</h1>
+  <p>Your feedback on the first part really helped. Here's a second part I'd like your thoughts on: why the business exists, the change I'm here to make, and what I stand for.</p>
+  <p>It takes about ten minutes, and your honest first reaction is what helps most. I appreciate it.</p>
+  <p class="small">This is not public yet, so I'd be grateful if you kept it between us.</p>
+</div></div>
+
+<main>
+  <section>
+    <div class="num">1</div>
+    <h2>Why this business exists</h2>
+    <p class="what">The purpose.</p>
+    <p class="lead">So a business owner never has to carry their marketing alone, or wonder what it's making them.</p>
+    <p>Running a business can be a lonely place. The revenue, the decisions and the worry all land on you, and marketing becomes one more thing on the pile: you pay for it, you hope, and you can't see what it's making you.</p>
+    <p>I've been in your shoes, and I know what that weight does, to the business and to the life around it. I believe no one should have to carry that alone, or be left wondering.</p>
+    <p>That is why Inner Circle Marketing exists: so a business owner never has to carry their marketing alone, or wonder what it's making them.</p>
+    <div class="ask">
+      <p class="tag">Your thoughts</p>
+      <label class="q" for="q1">What is the first thing that comes to mind when you read this?</label>
+      <textarea id="q1" data-q="Purpose: first thing that comes to mind"></textarea>
+      <label class="q" for="q2">Does it sound like your own experience of marketing? What rings true, and what doesn't?</label>
+      <textarea id="q2" data-q="Purpose: what rings true, and what doesn't"></textarea>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">2</div>
+    <h2>The change I'm here to make</h2>
+    <p class="what">The mission.</p>
+    <p class="lead">My mission is to change that for my clients: to work alongside them, as part of their business, with their revenue first, and with the proof in what I do, not what I say.</p>
+    <p>After 25 years in marketing, what has always bothered me is how broken up it is for business owners. The pieces of their marketing don't fit together. Promises are made and not delivered. And there's no way to see whether the marketing is actually working, or making them money.</p>
+    <p>So they're left on their own to work it out and put the pieces together, which is one more confusing job they don't need. Like everything else in their business, they need someone who is an expert at what they do and takes care of all of it, not someone who does a part and hands the rest back. Instead, they're the only ones paying attention to what matters: the revenue of the business.</p>
+    <p>My mission is to change that for my clients: to work alongside them, as part of their business, with their revenue first, and with the proof in what I do, not what I say.</p>
+    <div class="ask">
+      <p class="tag">Your thoughts</p>
+      <label class="q" for="q3">In your own words, what would be different for you if you worked with me?</label>
+      <textarea id="q3" data-q="Mission: what would be different for you"></textarea>
+      <label class="q" for="q4">Is anything unclear, or does any part not sit right with you?</label>
+      <textarea id="q4" data-q="Mission: unclear or not sitting right"></textarea>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">3</div>
+    <h2>What I stand for</h2>
+    <p class="what">Seven values, and beside each one, what I don't do. Under each is a tick and a box: tick the ones that matter to you, and add a thought on any of them if you'd like.</p>
+
+    <div class="value" data-v="Value 1: Evidence over words">
+      <div class="top">
+        <h3><span>1</span>Evidence over words</h3>
+        <p>I'm sure you've been made a lot of promises before. Everything looked good, the credibility was all there, you went ahead, and it wasn't delivered. Anyone can promise. So I don't ask you to take my word for it: I don't lock you into a contract, and you see me doing what I say from the first week. I'm as committed to this as you are.</p>
+        <div class="dont"><b>I don't ask you to take my word for it.</b>You've been made promises before. So I don't lock you into a contract, and you see me doing what I say from the first week.</div>
+      </div>
+      <div class="fb"><label class="tick"><input type="checkbox">This one matters to me</label><textarea placeholder="Any thoughts on this one? Does it ring true?"></textarea></div>
+    </div>
+
+    <div class="value" data-v="Value 2: The right fit, both ways">
+      <div class="top">
+        <h3><span>2</span>The right fit, both ways</h3>
+        <p>Running a business is hard, and it's never all smooth sailing. So who you work with matters more than anything. Neither of us wants to put time and money into something, then watch it fall over because we expected different things. So before we start, we both make sure it's right: that we're clear on what to expect, and that we can work well together. If it isn't the right fit, we both say so, because neither of us wants to waste time or money.</p>
+        <div class="dont"><b>I don't go ahead unless it's right for both of us.</b>Neither of us wants to put time and money into something, then watch it fall over.</div>
+      </div>
+      <div class="fb"><label class="tick"><input type="checkbox">This one matters to me</label><textarea placeholder="Any thoughts on this one? Does it ring true?"></textarea></div>
+    </div>
+
+    <div class="value" data-v="Value 3: The person as well as the business">
+      <div class="top">
+        <h3><span>3</span>The person as well as the business</h3>
+        <p>Running a business is hard. It's hard on you, hard on your relationships and hard on your health. I've been in your shoes, and I know what it looks like when those things aren't looked after. We build a business for security, for growth, for the future. But the real reason is a life you'd like to live. So that's what I keep in view: a business that's sustainable, and that looks after what matters most to you.</p>
+        <div class="dont"><b>I don't look at your marketing by itself.</b>Behind the business is a life you'd like to live. That's what I keep in view.</div>
+      </div>
+      <div class="fb"><label class="tick"><input type="checkbox">This one matters to me</label><textarea placeholder="Any thoughts on this one? Does it ring true?"></textarea></div>
+    </div>
+
+    <div class="value" data-v="Value 4: Honest conversations">
+      <div class="top">
+        <h3><span>4</span>Honest conversations</h3>
+        <p>No one enjoys hearing that something isn't working. But not hearing it costs far more. So we talk honestly about what's working and what isn't, in the marketing and in the business around it. If something on my side needs to change, I'll say so. If something on yours is getting in the way, I'll say that too, and I'd ask the same of you. Then we change it, together.</p>
+        <div class="dont"><b>I don't give you excuses or fluffy answers.</b>Not hearing that something isn't working costs far more than hearing it. So I tell you straight, and I'd ask the same of you.</div>
+      </div>
+      <div class="fb"><label class="tick"><input type="checkbox">This one matters to me</label><textarea placeholder="Any thoughts on this one? Does it ring true?"></textarea></div>
+    </div>
+
+    <div class="value" data-v="Value 5: A reason for everything">
+      <div class="top">
+        <h3><span>5</span>A reason for everything</h3>
+        <p>You shouldn't have to chase anyone to find out what's being done in your own business, or why. Your job as the owner is to decide, not to micromanage. So with everything I do, you'll know what it is, why we're doing it, what it's meant to achieve, what it costs and what the risks are. Then the decision is yours: yes, no, or change it.</p>
+        <div class="dont"><b>I don't do anything in your business without you knowing why.</b>Your job is to decide, not to chase. You'll know what it is, why, and what it costs.</div>
+      </div>
+      <div class="fb"><label class="tick"><input type="checkbox">This one matters to me</label><textarea placeholder="Any thoughts on this one? Does it ring true?"></textarea></div>
+    </div>
+
+    <div class="value" data-v="Value 6: Hands-on at every step">
+      <div class="top">
+        <h3><span>6</span>Hands-on at every step</h3>
+        <p>When you choose someone for their experience, that experience should be the one doing the work. So I'm hands-on at every step, and nothing is handed off. Twenty-five years has taught me what to do and, just as much, what not to do. I'm across every piece, so each one fits with the next, and all of it is built with one aim: revenue coming in the door.</p>
+        <div class="dont"><b>I don't hand your work off to someone else.</b>You chose me for my experience, so that experience should be the one doing the work.</div>
+      </div>
+      <div class="fb"><label class="tick"><input type="checkbox">This one matters to me</label><textarea placeholder="Any thoughts on this one? Does it ring true?"></textarea></div>
+    </div>
+
+    <div class="value" data-v="Value 7: Revenue first">
+      <div class="top">
+        <h3><span>7</span>Revenue first</h3>
+        <p>If a business isn't putting revenue in the bank, nothing else matters. I'm a small business owner just like you, so I watch the same number you do. Marketing is an investment, and like any investment, you should be able to see what it's returning. So that's what I measure everything against: not clicks or likes, but what it's making you. And if the return isn't there, we see it, and we do something about it.</p>
+        <div class="dont"><b>I don't measure your marketing in clicks and likes.</b>If it isn't putting revenue in the bank, nothing else matters. So I measure everything against what it's making you.</div>
+      </div>
+      <div class="fb"><label class="tick"><input type="checkbox">This one matters to me</label><textarea placeholder="Any thoughts on this one? Does it ring true?"></textarea></div>
+    </div>
+
+    <div class="closing value" data-v="One more line in the sand">
+      <div class="top">
+        <p class="tagc">And one more line in the sand</p>
+        <b>I don't do anything that isn't best practice, isn't ethical, or isn't good for your business.</b>
+        <p>Your marketing speaks for your business, so everything I do is something we can both stand behind.</p>
+      </div>
+      <div class="fb"><label class="tick"><input type="checkbox">This one matters to me</label><textarea placeholder="Any thoughts on this one? Does it ring true?"></textarea></div>
+    </div>
+
+    <div class="ask">
+      <p class="tag">Looking at all seven</p>
+      <label class="q" for="q5">Which one matters most to you as a business owner, and why?</label>
+      <textarea id="q5" data-q="Values: which matters most, and why"></textarea>
+      <label class="q" for="q6">Is anything missing that you'd want from someone looking after your marketing?</label>
+      <textarea id="q6" data-q="Values: anything missing"></textarea>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">4</div>
+    <h2>Having read all of that</h2>
+    <p class="what">Two last questions, with the line that goes with the name.</p>
+    <div class="lineband"><small>Inner Circle Marketing</small>See how your marketing is working, and know what it's making you.</div>
+    <div class="ask">
+      <p class="tag">Your thoughts</p>
+      <label class="q" for="q7">How does all of this leave you feeling about the business?</label>
+      <textarea id="q7" data-q="Overall: how it leaves you feeling"></textarea>
+      <label class="q" for="q8">What would you want to know before having a first conversation with me?</label>
+      <textarea id="q8" data-q="Overall: what you'd want to know before a first conversation"></textarea>
+      <label class="q" for="q9">Looking back over all of it, what is the one thing that has stayed with you?</label>
+      <textarea id="q9" data-q="Overall: the one thing that stayed with you"></textarea>
+    </div>
+    <button class="btn" id="send">Send my answers</button>
+    <p class="err" id="err"></p>
+  </section>
+</main>
+</div>
+
+<div class="end" id="thanks"><h1>Thank you</h1><p>I appreciate your time and your honesty.</p></div>
+<div class="end" id="nolink"><h1>Sorry, this link is not complete</h1><p>Please use the link exactly as it was sent to you. If it still does not open, please let me know and I will send it again.</p></div>
+
+<script>
+var ENDPOINT = "https://script.google.com/macros/s/AKfycbzPT5Iw3xRfQ5NuGGL5Svc3h6IMMxIoYfvtFlZpdKM3ddMQr9JJW0_CLeRb3vQjvJnz/exec", CLIENT = "Inner Circle Marketing", CLIENT_CODE = "ic", READERS = ["BMDOT", "EO9YP", "UYK5J", "GCWSJ"], DRAFT = false;
+var m = /[?&]r=([A-Za-z0-9]+)/.exec(location.search), READER = m ? m[1].toUpperCase() : '';
+function only(id) { document.getElementById('page').style.display = 'none'; document.getElementById(id).style.display = 'block'; window.scrollTo(0, 0); }
+function say(msg) { var e = document.getElementById('err'); e.textContent = msg; e.style.display = 'block'; }
+if (!DRAFT) document.getElementById('draftBadge').style.display = 'none';
+if (!DRAFT && READERS.indexOf(READER) < 0) only('nolink');
+document.getElementById('send').addEventListener('click', function () {
+  var btn = this;
+  if (!ENDPOINT) { say("This is the draft: nothing is sent from this copy."); return; }
+  btn.disabled = true; btn.textContent = 'Sending...';
+  var items = [{ title: 'Reader', looks_great: false, comment: READER }];
+  Array.prototype.forEach.call(document.querySelectorAll('textarea[data-q], .value[data-v]'), function (el) {
+    if (el.tagName === 'TEXTAREA') items.push({ title: el.getAttribute('data-q'), looks_great: false, comment: el.value.trim() });
+    else items.push({ title: el.getAttribute('data-v'), looks_great: el.querySelector('input[type=checkbox]').checked, comment: el.querySelector('textarea').value.trim() });
+  });
+  var payload = { client: CLIENT, client_code: CLIENT_CODE, service: 'Brand development', contact: 'Reader ' + READER,
+    doc_type: 'Reader test', doc_name: 'Second round, reader ' + READER, tab: 'Second round ' + READER,
+    test: /[?&]test=1/.test(location.search), submitted_at: new Date().toISOString(), sections: items,
+    key: '', page_url: '' };
+  fetch(ENDPOINT, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload) })
+    .then(function () { only('thanks'); })
+    .catch(function () { btn.disabled = false; btn.textContent = 'Send my answers'; say("Sorry, that didn't go through. Please try again."); });
+});
+</script>
+</body>
+</html>
