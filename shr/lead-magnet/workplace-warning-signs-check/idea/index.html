@@ -97,6 +97,58 @@
     table.stack td[data-label]::before { content:attr(data-label); display:block; font-size:12px; color:#555; margin-top:6px; }
     table.stack tr.ibrow { display:block; } table.stack tr.ibrow td { padding:0 12px 10px; } .ib { flex-wrap:wrap; gap:2px 14px; } .ib .ibc { flex-basis:100%; } }
   @media print { .fb, .submit, .thanks, .ib label, .ib textarea { display:none !important; } .ians:not(:empty) { display:block !important; } .answered { display:block !important; } .card, table { break-inside:avoid; } }
+/* Design floors for every client page (Adam, 25/11/2026). From the Design Brain's check of the page templates
+   (Skills\Previews\design-check). Each page builder adds this file last, so it wins over the page's own styling.
+   It holds only what a reader would be hurt by: line breaks, text too small to read, targets too small to tap,
+   field edges too faint to see, states shown by fading. Nothing here is a matter of taste, and no client facts. */
+
+/* Headings and short labels never leave one word alone on the last line */
+h1, h2, h3, .sub, .quote, .btn, .choice, .jlabel, .tally a, .plopt .pltext { text-wrap:balance; }
+p, li, td { text-wrap:pretty; }
+/* A headline of two sentences breaks between them, never inside the second one */
+.sent { display:inline-block; text-wrap:balance; }
+
+/* Text a reader must read: 16px body, nothing under 14px (a tag that only repeats something may be 12px) */
+body { font-size:16px; }
+.note, .cap, .rcap, .fb .q.all, .ib, .ib textarea, .ians, footer, footer.foot, .copy, .plopt .plwhy, .exnote, .rnote,
+.fb .chip, .jline, .rstep, .tally .st, .savebar .saved, .jstat, .new, .draft, .rcheck .lab, .rbarx, .rbarx .views button,
+table.stack td[data-label]::before { font-size:14px; }
+.extag, .rbarx .tag, .jnum { font-size:12px; }
+.jnum { width:22px; height:22px; line-height:22px; }
+.fb textarea, .qa textarea, .pl textarea, .signoff textarea, .savepanel input { font-size:16px; }
+table, .rfacts, .how li, .tally li, .signoff .next, .journey .lead, .fb .q, .fb .more .ql { font-size:15px; }
+
+/* Long lines: paragraphs keep to a readable width on a wide screen */
+.wrap > p, section p, .intro p, .rwhat, .signoff .next, .card p { max-width:68ch; }
+
+/* The edge of every box the client types in can be seen (3:1 or more on white and on the tint) */
+.fb textarea, .ib textarea, .qa textarea, .pl textarea, .signoff textarea, .savepanel input { border-color:#767676; }
+
+/* Everything the client taps is at least 44px tall */
+.fb label, .ib label, .qa .yn label { min-height:48px; align-items:center; }
+.fb input[type=checkbox], .fb input[type=radio], .ib input[type=checkbox], .qa input[type=radio], .plopt input { width:24px; height:24px; margin-top:0; flex:none; }
+.ib { align-items:center; }
+.ib textarea { min-height:48px; line-height:1.5; padding:11px 12px; overflow:auto; }
+.rbarx .views button { min-height:44px; padding:8px 14px; }
+.btn.small, .savebar .btn { min-height:48px; font-size:16px; }
+.choice { min-height:48px; }
+
+/* The two sign-off buttons are the same width */
+.submit .btn { display:block; width:100%; max-width:440px; }
+
+/* A state is shown by its words and colour, never by fading the text */
+.btn:disabled, .choice:disabled { opacity:1; cursor:progress; }
+.choice.change.on, .jstat.fb, .tally .st.fb { background:#A85A0F; border-color:#A85A0F; color:#fff; }
+.fb.updated { border-color:#A85A0F; }
+.fb .missmsg { display:none; color:#B3261E; font-size:14px; font-weight:600; margin:10px 0 0; }
+.fb.miss .missmsg { display:block; }
+
+/* Where the keyboard is, is always plain to see; nothing moves when it is pointed at */
+a:focus-visible, button:focus-visible, textarea:focus-visible, input:focus-visible { outline:3px solid var(--dark, #1F3442); outline-offset:2px; }
+.jstage a:hover, .jstage a:focus { transform:none; }
+
+@media (max-width:760px) { .submit .btn { max-width:none; } }
+@media print { body { font-size:12.5px; } }
 </style>
 </head>
 <body>
@@ -119,7 +171,7 @@
 <section>
   <div class="wrap">
     <h2>The hook on your website</h2>
-<p class="rc">This is what a visitor to your website sees first. It has one job: to make the right person want to click through.</p><div class="hookband example" title="Example only, not a link"><span class="extag">Example only</span><div class="txt"><h3 class="rc">Stressed staff, low morale, people leaving? It may be how the work is set up.</h3><p class="rc">A free one-page check turns what you&#x27;re noticing into the three places to look first.</p></div><span class="cta rc">Get the free check</span></div><p class="exnote" role="status">This is just an example of how it could look. It isn't a link.</p><p class="cap">An example of how it could look. The design follows your brand once it is built.</p><p class="rc">A small band and button on your services page, and on your psychosocial risk management section once it is added to your website.</p><div class="fb" data-title="The hook on your website" data-ans="ans-1"><label><input type="checkbox"> This looks great</label><p class="q">Or, if you&#x27;d like something changed here, please tell me:</p><textarea placeholder="Your thoughts, in your own words"></textarea></div><div class="answered" id="ans-1"></div>
+<p class="rc">This is what a visitor to your website sees first. It has one job: to make the right person want to click through.</p><div class="hookband example" title="Example only, not a link"><span class="extag">Example only</span><div class="txt"><h3 class="rc"><span class="sent">Stressed staff, low morale, people leaving?</span> <span class="sent">It may be how the work is set up.</span></h3><p class="rc">A free one-page check turns what you&#x27;re noticing into the three places to look first.</p></div><span class="cta rc">Get the free check</span></div><p class="exnote" role="status">This is just an example of how it could look. It isn't a link.</p><p class="cap">An example of how it could look. The design follows your brand once it is built.</p><p class="rc">A small band and button on your services page, and on your psychosocial risk management section once it is added to your website.</p><div class="fb" data-title="The hook on your website" data-ans="ans-1"><label><input type="checkbox"> This looks great</label><p class="q">Or, if you&#x27;d like something changed here, please tell me:</p><textarea placeholder="Your thoughts, in your own words"></textarea></div><div class="answered" id="ans-1"></div>
   </div>
 </section>
 <section class="band">
@@ -143,7 +195,7 @@
 <section>
   <div class="wrap">
     <h2>The emails</h2>
-<p class="rc">After someone signs up, these emails follow. Each one is short and useful.</p><div class="tablewrap"><table class="stack"><tr class="hd"><th style="width:150px">When</th><th>What it's about</th><th>What it invites your lead to do</th></tr><tr class="rc"><td class="lead">Straight away</td><td data-label="What it's about">The printable check and how to use it</td><td data-label="What it invites your lead to do">To reply and tell you which sign they ticked first<br><span class="note">A reply to the email</span></td></tr><tr class="ibrow"><td colspan="3"><div class="ib" data-title="Straight away: The printable check and how to use it" data-parent="The emails" data-ans="ans-19"><label><input type="checkbox"> Approve</label><div class="ibc"><textarea rows="1" placeholder="Changes (you can leave this empty)" aria-label="Changes to this item"></textarea><div class="ians" id="ans-19"></div></div></div></td></tr><tr class="rc"><td class="lead">3 days later</td><td data-label="What it's about">Psychosocial risk in plain words: why it is about how the work is set up, not about blaming people, and how to put the free government guides to work in your own workplace</td><td data-label="What it invites your lead to do"><span class="note">Nothing is asked. This email simply helps</span></td></tr><tr class="ibrow"><td colspan="3"><div class="ib" data-title="3 days later: Psychosocial risk in plain words: why it is about how the work is set up, not about blaming people, and how to put the free government guides to work in your own workplace" data-parent="The emails" data-ans="ans-20"><label><input type="checkbox"> Approve</label><div class="ibc"><textarea rows="1" placeholder="Changes (you can leave this empty)" aria-label="Changes to this item"></textarea><div class="ians" id="ans-20"></div></div></div></td></tr><tr class="rc"><td class="lead">About a week in</td><td data-label="What it's about">When the hazards come with the work: aggression, trauma, grief and working alone in aged care, disability and community services, and your own senior roles in those sectors</td><td data-label="What it invites your lead to do"><span class="note">Nothing is asked. This email simply helps</span></td></tr><tr class="ibrow"><td colspan="3"><div class="ib" data-title="About a week in: When the hazards come with the work: aggression, trauma, grief and working alone in aged care, disability and community services, and your own senior roles in those sectors" data-parent="The emails" data-ans="ans-21"><label><input type="checkbox"> Approve</label><div class="ibc"><textarea rows="1" placeholder="Changes (you can leave this empty)" aria-label="Changes to this item"></textarea><div class="ians" id="ans-21"></div></div></div></td></tr><tr class="rc"><td class="lead">About 10 days in</td><td data-label="What it's about">Hearing from staff in a way that leads somewhere: sessions away from management, kept to practical fixes that staff help design</td><td data-label="What it invites your lead to do"><span class="note">Nothing is asked. This email simply helps</span></td></tr><tr class="ibrow"><td colspan="3"><div class="ib" data-title="About 10 days in: Hearing from staff in a way that leads somewhere: sessions away from management, kept to practical fixes that staff help design" data-parent="The emails" data-ans="ans-22"><label><input type="checkbox"> Approve</label><div class="ibc"><textarea rows="1" placeholder="Changes (you can leave this empty)" aria-label="Changes to this item"></textarea><div class="ians" id="ans-22"></div></div></div></td></tr><tr class="rc"><td class="lead">About two weeks in</td><td data-label="What it's about">What working with you looks like: the register, an action plan for each team, and working alongside managers, with Dean Foster&#x27;s words</td><td data-label="What it invites your lead to do">To book a first conversation with you at no cost<br><span class="note">Straight to your booking calendar</span></td></tr><tr class="ibrow"><td colspan="3"><div class="ib" data-title="About two weeks in: What working with you looks like: the register, an action plan for each team, and working alongside managers, with Dean Foster&#x27;s words" data-parent="The emails" data-ans="ans-23"><label><input type="checkbox"> Approve</label><div class="ibc"><textarea rows="1" placeholder="Changes (you can leave this empty)" aria-label="Changes to this item"></textarea><div class="ians" id="ans-23"></div></div></div></td></tr><tr class="rc"><td class="lead">About four weeks in</td><td data-label="What it's about">A last note: they can reply with any question at any time, and there is more on your website</td><td data-label="What it invites your lead to do"><span class="note">Nothing is asked. This email simply helps</span></td></tr><tr class="ibrow"><td colspan="3"><div class="ib" data-title="About four weeks in: A last note: they can reply with any question at any time, and there is more on your website" data-parent="The emails" data-ans="ans-24"><label><input type="checkbox"> Approve</label><div class="ibc"><textarea rows="1" placeholder="Changes (you can leave this empty)" aria-label="Changes to this item"></textarea><div class="ians" id="ans-24"></div></div></div></td></tr></table></div><div class="fb" data-title="The emails" data-ans="ans-25"><label><input type="checkbox"> This looks great</label><p class="q all">Ticking this approves every item above. You can still untick any one and write a change under it.</p><p class="q">Or, if you&#x27;d like something changed here, please tell me:</p><textarea placeholder="Your thoughts, in your own words"></textarea></div><div class="answered" id="ans-25"></div>
+<p class="rc">After someone signs up, these emails follow. Each one is short and useful.</p><div class="tablewrap"><table class="stack"><tr class="hd"><th style="width:150px">When</th><th>What it's about</th><th>What it invites your lead to do</th></tr><tr class="rc"><td class="lead">Straight away</td><td data-label="What it's about">The printable check and how to use it</td><td data-label="What it invites your lead to do">To reply and tell you which sign they ticked first<br><span class="note">A reply to the email</span></td></tr><tr class="ibrow"><td colspan="3"><div class="ib" data-title="Straight away: The printable check and how to use it" data-parent="The emails" data-ans="ans-19"><label><input type="checkbox"> Approve</label><div class="ibc"><textarea rows="1" placeholder="Changes (you can leave this empty)" aria-label="Changes to this item"></textarea><div class="ians" id="ans-19"></div></div></div></td></tr><tr class="rc"><td class="lead">3 days after the previous email</td><td data-label="What it's about">Psychosocial risk in plain words: why it is about how the work is set up, not about blaming people, and how to put the free government guides to work in your own workplace</td><td data-label="What it invites your lead to do"><span class="note">Nothing is asked. This email simply helps</span></td></tr><tr class="ibrow"><td colspan="3"><div class="ib" data-title="3 days after the previous email: Psychosocial risk in plain words: why it is about how the work is set up, not about blaming people, and how to put the free government guides to work in your own workplace" data-parent="The emails" data-ans="ans-20"><label><input type="checkbox"> Approve</label><div class="ibc"><textarea rows="1" placeholder="Changes (you can leave this empty)" aria-label="Changes to this item"></textarea><div class="ians" id="ans-20"></div></div></div></td></tr><tr class="rc"><td class="lead">4 days after the previous email</td><td data-label="What it's about">When the hazards come with the work: aggression, trauma, grief and working alone in aged care, disability and community services, and your own senior roles in those sectors</td><td data-label="What it invites your lead to do"><span class="note">Nothing is asked. This email simply helps</span></td></tr><tr class="ibrow"><td colspan="3"><div class="ib" data-title="4 days after the previous email: When the hazards come with the work: aggression, trauma, grief and working alone in aged care, disability and community services, and your own senior roles in those sectors" data-parent="The emails" data-ans="ans-21"><label><input type="checkbox"> Approve</label><div class="ibc"><textarea rows="1" placeholder="Changes (you can leave this empty)" aria-label="Changes to this item"></textarea><div class="ians" id="ans-21"></div></div></div></td></tr><tr class="rc"><td class="lead">3 days after the previous email</td><td data-label="What it's about">Hearing from staff in a way that leads somewhere: sessions away from management, kept to practical fixes that staff help design</td><td data-label="What it invites your lead to do"><span class="note">Nothing is asked. This email simply helps</span></td></tr><tr class="ibrow"><td colspan="3"><div class="ib" data-title="3 days after the previous email: Hearing from staff in a way that leads somewhere: sessions away from management, kept to practical fixes that staff help design" data-parent="The emails" data-ans="ans-22"><label><input type="checkbox"> Approve</label><div class="ibc"><textarea rows="1" placeholder="Changes (you can leave this empty)" aria-label="Changes to this item"></textarea><div class="ians" id="ans-22"></div></div></div></td></tr><tr class="rc"><td class="lead">4 days after the previous email</td><td data-label="What it's about">What working with you looks like: the register, an action plan for each team, and working alongside managers, with Dean Foster&#x27;s words</td><td data-label="What it invites your lead to do">To book a first conversation with you at no cost<br><span class="note">Straight to your booking calendar</span></td></tr><tr class="ibrow"><td colspan="3"><div class="ib" data-title="4 days after the previous email: What working with you looks like: the register, an action plan for each team, and working alongside managers, with Dean Foster&#x27;s words" data-parent="The emails" data-ans="ans-23"><label><input type="checkbox"> Approve</label><div class="ibc"><textarea rows="1" placeholder="Changes (you can leave this empty)" aria-label="Changes to this item"></textarea><div class="ians" id="ans-23"></div></div></div></td></tr><tr class="rc"><td class="lead">14 days after the previous email</td><td data-label="What it's about">A last note: they can reply with any question at any time, and there is more on your website</td><td data-label="What it invites your lead to do"><span class="note">Nothing is asked. This email simply helps</span></td></tr><tr class="ibrow"><td colspan="3"><div class="ib" data-title="14 days after the previous email: A last note: they can reply with any question at any time, and there is more on your website" data-parent="The emails" data-ans="ans-24"><label><input type="checkbox"> Approve</label><div class="ibc"><textarea rows="1" placeholder="Changes (you can leave this empty)" aria-label="Changes to this item"></textarea><div class="ians" id="ans-24"></div></div></div></td></tr></table></div><div class="fb" data-title="The emails" data-ans="ans-25"><label><input type="checkbox"> This looks great</label><p class="q all">Ticking this approves every item above. You can still untick any one and write a change under it.</p><p class="q">Or, if you&#x27;d like something changed here, please tell me:</p><textarea placeholder="Your thoughts, in your own words"></textarea></div><div class="answered" id="ans-25"></div>
   </div>
 </section>
 <section class="band">
@@ -160,7 +212,7 @@
   <div class="submit">
     <div class="signoff">
       <h3>When you're happy with it</h3>
-      <p class="next">Your approval includes any changes you've written above, exactly as you've written them. I'll read through it, and once it's approved I'll send you the final version for your records.</p>
+      <p class="next">Your approval includes any changes you've written above, exactly as you've written them. I'll read through it and come back to you if I have any questions.</p>
       <button class="btn" id="send-approve">I approve this idea, with my changes above</button>
     </div>
     <div class="signoff ask">
@@ -232,7 +284,7 @@ Array.prototype.forEach.call(document.querySelectorAll('.ib'), function (ib) {
     else if (t.getAttribute('data-all')) { t.checked = false; t.removeAttribute('data-all'); }
   });
   t.addEventListener('change', function () { t.removeAttribute('data-all'); });
-  area.addEventListener('input', function () { area.style.height = '30px'; area.style.height = Math.max(30, area.scrollHeight + 2) + 'px'; });
+  area.addEventListener('input', function () { area.style.height = '48px'; area.style.height = Math.max(48, area.scrollHeight + 2) + 'px'; });
 });
 var STATUS = '', ASK = '';
 function say(msg) { var e = document.getElementById('err'); e.textContent = msg; e.style.display = 'block'; }
@@ -308,10 +360,10 @@ var ROUNDS = { key: '', role: '', test: /[?&]test=1/.test(location.search), stat
     '.rthread{margin:0 0 12px}' +
     '.rmsg{border:1px solid var(--line,#dde3e8);border-radius:8px;padding:10px 12px;margin:0 0 8px;font-size:14px;background:#fff;text-align:left}' +
     '.rmsg.adam{background:var(--tint,#f3f7f9);margin-left:26px}' +
-    '.rmsg.fresh{border:2px solid #d9822b;background:#fff7ec}' +
+    '.rmsg.fresh{border:2px solid #a85a0f;background:#fff7ec}' +
     '.rwho{display:block;font-size:12px;font-weight:700;color:var(--dark,var(--navy,#223));margin-bottom:2px}' +
-    '.rtag{display:inline-block;margin-left:8px;font-size:11px;font-weight:700;color:#fff;background:#d9822b;border-radius:99px;padding:0 8px}' +
-    '.rnone{font-size:13px;color:#666;font-style:italic;margin:0 0 10px}' +
+    '.rtag{display:inline-block;margin-left:8px;font-size:14px;font-weight:700;color:#fff;background:#a85a0f;border-radius:99px;padding:0 8px}' +
+    '.rnone{font-size:14px;color:#666;font-style:italic;margin:0 0 10px}' +
     '.rbar{border:2px solid var(--dark,var(--navy,#223));border-radius:10px;padding:20px 22px;margin:10px 0 36px;background:#fff;text-align:left}' +
     '.rbar h3{margin:0 0 6px}.rbar p{margin:0 0 12px;font-size:14px}' +
     '.rbar textarea{width:100%;min-height:72px;margin:0 0 14px;border:1px solid var(--line,#dde3e8);border-radius:6px;padding:10px 12px;font:inherit;font-size:14px;resize:vertical}' +
@@ -406,7 +458,7 @@ var ROUNDS = { key: '', role: '', test: /[?&]test=1/.test(location.search), stat
         area.placeholder = 'Your question or note for ' + contact + ' on this part (leave empty if there is none)';
       } else if (waiting) {
         area.placeholder = "Your answer to Adam's question";
-        area.style.borderColor = '#d9822b';
+        area.style.borderColor = '#a85a0f';
         asked.push('<a href="#rpart-' + n + '">' + esc(p.title.length > 44 ? p.title.substring(0, 42) + '...' : p.title) + '</a>');
       } else {
         area.placeholder = "Anything else you'd like to add here (you can leave this empty)";
